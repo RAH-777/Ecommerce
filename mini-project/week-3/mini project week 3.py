@@ -1,21 +1,22 @@
-products = []
-
+import os
+PRODUCT_FILE = "C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-3\\products.txt"
+COURIERS_FILE = "C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-3\\couriers.txt"
 def get_product_list():
 #open file in read mode
-    with open("products.txt","r") as file:
+    with open(PRODUCT_FILE,"r") as file:
         product_list = file.readlines()
 #store products in python list
     stripped_product_list = []
     for item in product_list:
         stripped_product_list.append(item.strip())   
 #return the product list    
-    return(stripped_product_list )
+    return(stripped_product_list)
 
 products = get_product_list()
 
 
 def get_courier_list():
-    with open("couriers.txt","r") as file:
+    with open(COURIERS_FILE,"r") as file:
         couriers_list = file.readlines()
     stripped_courier_list = []
     for item in couriers_list:
@@ -39,7 +40,7 @@ orders = [{
 
 
 while True:
-    print('MAIN MENU OPTION:\n0.Exit\n1.PRODUCTS MENU\n2.ORDERS MENU')
+    print('MAIN MENU OPTION:\n0.Exit\n1.PRODUCTS MENU\n2.COURIER MENU\n3.ORDERS MENU')
     main_menu_option = int(input('choose an option from 0-2: '))
     if main_menu_option == 0:
         exit("Program has exited")
@@ -126,7 +127,9 @@ while True:
             if user_input == 0:
                 break
             #print couriers list
-            if user_input == 1:
+            elif user_input == 1:
+                for item in couriers:
+                    print(item)
                 if len(couriers) < 1:
                     print("\nSorry, there are currently no couriers.")
                     print("\nIs there anything else we can help you with?\n")

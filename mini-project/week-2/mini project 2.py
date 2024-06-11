@@ -119,9 +119,9 @@ while True:
             order_to_update = orders[user_input_index]
 
             for key, value in order_to_update.items():
-            new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
+                new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
             if new_value.strip() != "":
-            order_to_update[key] = new_value
+                order_to_update[key] = new_value
 
             print("Order updated successfully!")
             print_orders(orders)
