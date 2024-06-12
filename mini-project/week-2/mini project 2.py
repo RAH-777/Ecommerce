@@ -124,7 +124,7 @@ while True:
                 order_to_update[key] = new_value
 
             print("Order updated successfully!")
-            print_orders(orders)
+            print(orders)
 
     #     FOR EACH key-value pair in selected order:
     #         GET user input for updated property
