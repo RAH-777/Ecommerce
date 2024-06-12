@@ -91,7 +91,7 @@ ELSE IF user input is 1:
     ELSE IF user input is 2:
         # CREATE new product
 
-        GET user input for product name
+        GET user input for product na
         GET user input for product price
         CREATE new product dictionary with above properties
         APPEND product dictionary to products list
