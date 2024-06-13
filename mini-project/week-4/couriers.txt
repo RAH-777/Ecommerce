@@ -1,0 +1,6 @@
+{'name': 'uber', 'phone': '012345678', 'index': '0'}
+{'name': 'deliveroo', 'phone': '091234564', 'index': '1'}
+{'name': 'justeat', 'phone': '0907565366', 'index': '2'}
+{'name': 'fedex', 'phone': '0790663567', 'index': '3'}
+{'name': 'royalmail', 'phone': '0578563456', 'index': '4'}
+{'name': 'evri', 'phone': '07895666585', 'index': '5'}

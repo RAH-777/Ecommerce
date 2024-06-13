@@ -1,7 +1,7 @@
-Uber
-Deliveroo
-Justeat
-Fedex
-Royalmail
-Evri
-UPS
+name,phone,index
+Uber,012345678,0
+Deliveroo,091234564,1
+Justeat,0907565366,2
+Fedex,0790663567,3
+Royalmail,0578563456,4
+Evri,07895666585,5
