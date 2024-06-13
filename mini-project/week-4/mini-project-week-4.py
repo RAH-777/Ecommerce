@@ -78,7 +78,7 @@ def update_orders(orders):
 
 PRODUCT_FILE = 'C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-4\\products.csv'
 COURIERS_FILE = 'C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-4\\couriers.csv'
-ORDER_FILE = 'C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-4\\order.csv'
+ORDER_FILE = 'C:\\Users\\lordr\\Documents\\Python\\Raheem-miniproject\\mini-project\\week-4\\orders.csv'
 
 
 
@@ -303,93 +303,103 @@ while True:
                 break
             #   create orders  
             # option 2:
+            # Assuming orders is already defined as an empty list
+            orders = []
+
             if order_menu_option == 2:
-                customer_name = input('Enter customer name:')
-                customer_address = input('Enter customer address:')
-                customer_phone_number = input('Please enter your phone no:')
-                courier = int(input("choose the courier index: "))
+                customer_name = input('Enter customer name: ')
+                customer_address = input('Enter customer address: ')
+                customer_phone_number = input('Please enter your phone no: ')
+                courier = int(input("Choose the courier index: "))
                 status = input("What is the order status?: ")
-                for item in products:
-                    print(item)
-                items = input('Please input the item number?: ')
-                    return {
-                            'customer name':customer_name ,
-                            'customer address':customer_address,
-                            'customer phone number':customer_phone_number ,
-                            'courier':courier,
-                            'status':status,
-                            'items' : items
-                            }
 
-                orders.append ( {
-                'customer_name':customer_name, 
-                'customer_address':customer_address, 
-                'customer_phone_number':customer_phone_number,
-                'order':customer_order,
-                "order_status": "preparing",
-                })
-                
+                # Initialize an empty list for items
+                items = []
 
-    
+                # Loop to add items to the order
+                while True:
+                    for idx, product in enumerate(products):
+                        print(f"{idx}: {product['name']} - {product['price']}")
+                    item_index = input('Please input the item number (or type "done" to finish): ')
+                    if item_index.lower() == 'done':
+                        break
+                    else:
+                        try:
+                            item_index = int(item_index)
+                            if 0 <= item_index < len(products):
+                                items.append(item_index)
+                            else:
+                                print("Invalid item number. Please try again.")
+                        except ValueError:
+                            print("Invalid input. Please enter a number or 'done'.")
+
+                # Create the order dictionary
+                order = {
+                    'customer name': customer_name,
+                    'customer address': customer_address,
+                    'customer phone number': customer_phone_number,
+                    'courier': courier,
+                    'status': status,
+                    'items': items
+                    }
+
+                # Append the order dictionary to the orders list
+                orders.append(order)
+
+                print("Order added successfully!")
+                print("Current orders:", orders)
 
 
 
-
-
-
-
-
-
-
-                print("Order added.")
+        
                 print('is there anything else we can help you with?')
 
-#  # UPDATE existing order status
+    # UPDATE existing order status
 
-#         elif order_menu_option == 3:
-#         #     PRINT orders list with its index values
-#             for index,item in enumerate (orders):
-#                 print(index,item['customer_name'])
+            elif order_menu_option == 3:
+            #     PRINT orders list with its index values
+                for index,item in enumerate (orders):
+                    print(index,item['customer_name'])
 
-#         # GET user input for order index value
-#             user_input_index = int (input('ENTER order index value to update status'))
-        
-        
-#         # PRINT order status list with index values
-#             for index,item in enumerate(orders):
-#                 print(index,item['order_status'] )
+            # GET user input for order index value
+                user_input_index = int (input('ENTER order index value to update status'))
+            
+            
+            # PRINT order status list with index values
+                for index,item in enumerate(orders):
+                    print(index,item['order_status'] )
 
-#         # GET user input for order status index value
-#             status_update = input('What do you want to UPDATE status to')
-#             # UPDATE status for order
-#             orders[user_input_index]['order_status'] = status_update
-#             print('is there anything else we can help you with?')
+            # GET user input for order status index value
+                status_update = input('What do you want to UPDATE status to')
+                # UPDATE status for order
+                orders[user_input_index]['order_status'] = status_update
+                print('is there anything else we can help you with?')
 
-#          # ELSE IF user input is 4:
-#         elif order_menu_option == 4:
-#             # STRETCH - UPDATE existing order
-#             #     PRINT orders list with its index values
-#             for index,item in enumerate (orders):
-#                 print(index,item['customer_name'])
-#         #GET user input for order index value
-#             user_input_index = int ( input("ENTER order index value to update existing order"))
-#             if user_input_index < 0 or user_input_index >= len(orders):
-#                 print("Invalid order index")
-#                     return
+            # # ELSE IF user input is 4:
+            # elif order_menu_option == 4:
+            #     # STRETCH - UPDATE existing order
+            #     #     PRINT orders list with its index values
+            #     for index,item in enumerate (orders):
+            #         print(index,item['customer_name'])
+            # #GET user input for order index value
+            #     user_input_index = int ( input("ENTER order index value to update existing order"))
+            #     if user_input_index < 0 or user_input_index >= len(orders):
+            #         print("Invalid order index")
+            #             return
 
-#             order_to_update = orders[user_input_index]
+            #     order_to_update = orders[user_input_index]
 
-#             for key, value in order_to_update.items():
-#             new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
-#             if new_value.strip() != "":
-#             order_to_update[key] = new_value
+            #     for key, value in order_to_update.items():
+            #     new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
+            #     if new_value.strip() != "":
+            #     order_to_update[key] = new_value
 
-#             print("Order updated successfully!")
-#             print_orders(orders)
+            #     print("Order updated successfully!")
+            #     print_orders(orders)
 
-#     #     FOR EACH key-value pair in selected order:
-#     #         GET user input for updated property
-#     #         IF user input is blank:
-#     #             do not update this property
-#     #         ELSE:
-#     #             update the property value with user input
+    #     FOR EACH key-value pair in selected order:
+    #         GET user input for updated property
+    #         IF user input is blank:
+    #             do not update this property
+    #         ELSE:
+    #             update the property value with user input
