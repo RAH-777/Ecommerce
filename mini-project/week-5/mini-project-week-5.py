@@ -1,4 +1,4 @@
-from functions-mod import clear_screen,update_products, show_updated_products, show_main_menu, show_orders_menu,get_products,get_couriers,update_couriers,get_orders,update_orders
+from functions import clear_screen,update_products, show_updated_products, show_main_menu, show_orders_menu,get_products,get_couriers,update_couriers,get_orders,update_orders
 
 def main():
 
@@ -239,14 +239,48 @@ def show_product_menu():
 
 
 
-def show_orders_menu(): ...
+# def show_orders_menu():
+#     def show_orders_menu():
+#     clear_screen()
+#     #orders will be dict in this list
+#     orders = []
+
+#     #keep asking for input
+#     while True:
+
+#         try:
+#             order_menu_response = int(input("Orders menu\n\n0 - Go back to main menu\n1 - List orders\n2 - New order\n3 - Update order status\n4 - Update order items\n5 - Delete order\n6 - "))
+#             if 0 < order_menu_response > 6:
+#                 raise ValueError
+
+#             except ValueError:
+#                 clear_screen()
+#                 print("Please choose from the options.")
+#                 ontinue
+
+#                 #return to main menu
+#             if order_menu_response == 0:
+#                 return
+
+#             #show orders
+#             elif order_menu_response -- 1:
+#                 orders = get_orders()
+#                 print()
+#                 if len(orders) < 1:
+#                     clear_screen()
+#                     print("There are currently no orders\n")
+#                     print("Is there something else we can help you with?\n")
+
+#                 else:
+#                     clear_screen()
+#                     for order in orders:
 
 
 
 
 
 
-def show_courier_menu(): ...
+# def show_courier_menu(): ...
 
 
 

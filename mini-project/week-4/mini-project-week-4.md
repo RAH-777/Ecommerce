@@ -43,8 +43,8 @@ As a user I want to:
 
 ```json
 {
-  "customer_name": "John",
-  "customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER",
+  "customer_name": "John",Unit 2, 12 Main Street, LONDON, WH1 2ER
+  "customer_address": "",
   "customer_phone": "0789887334",
   "courier": 2, // Courier index
   "status": "preparing",

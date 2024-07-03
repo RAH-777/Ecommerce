@@ -1,3 +1,49 @@
+# sdSS_SSSSSSbs   .S    S.     sSSs                             
+# YSSS~S%SSSSSP  .SS    SS.   d%%SP                             
+#      S%S       S%S    S%S  d%S'                               
+#      S%S       S%S    S%S  S%S                                
+#      S&S       S%S SSSS%S  S&S                                
+#      S&S       S&S  SSS&S  S&S_Ss                             
+#      S&S       S&S    S&S  S&S~SP                             
+#      S&S       S&S    S&S  S&S                                
+#      S*S       S*S    S*S  S*b                                
+#      S*S       S*S    S*S  S*S.                               
+#      S*S       S*S    S*S   SSSbs                             
+#      S*S       SSS    S*S    YSSP                             
+#      SP               SP                                      
+#      Y                Y                                       
+                                                              
+#   sSSs    sSSs_sSSs      sSSs    sSSs    sSSs    sSSs         
+#  d%%SP   d%%SP~YS%%b    d%%SP   d%%SP   d%%SP   d%%SP         
+# d%S'    d%S'     `S%b  d%S'    d%S'    d%S'    d%S'           
+# S%S     S%S       S%S  S%S     S%S     S%S     S%S            
+# S&S     S&S       S&S  S&S     S&S     S&S     S&S            
+# S&S     S&S       S&S  S&S_Ss  S&S_Ss  S&S_Ss  S&S_Ss         
+# S&S     S&S       S&S  S&S~SP  S&S~SP  S&S~SP  S&S~SP         
+# S&S     S&S       S&S  S&S     S&S     S&S     S&S            
+# S*b     S*b       d*S  S*b     S*b     S*b     S*b            
+# S*S.    S*S.     .S*S  S*S     S*S     S*S.    S*S.           
+#  SSSbs   SSSbs_sdSSS   S*S     S*S      SSSbs   SSSbs         
+#   YSSP    YSSP~YSSY    S*S     S*S       YSSP    YSSP         
+#                        SP      SP                             
+#                        Y       Y                              
+                                                              
+#   sSSs   .S_SSSs     .S_sSSs    sdSS_SSSSSSbs    sSSs  S.     
+#  d%%SP  .SS~SSSSS   .SS~YS%%b   YSSS~S%SSSSSP   d%%SP  SS.    
+# d%S'    S%S   SSSS  S%S   `S%b       S%S       d%S'    S%S    
+# S%S     S%S    S%S  S%S    S%S       S%S       S%S     S%S    
+# S&S     S%S SSSS%S  S%S    d*S       S&S       S&S     S&S    
+# S&S     S&S  SSS%S  S&S   .S*S       S&S       S&S_Ss  S&S    
+# S&S     S&S    S&S  S&S_sdSSS        S&S       S&S~SP  S&S    
+# S&S     S&S    S&S  S&S~YSY%b        S&S       S&S     S&S    
+# S*b     S*S    S&S  S*S   `S%b       S*S       S*b     S*b    
+# S*S.    S*S    S*S  S*S    S%S       S*S       S*S.    S*S.   
+#  SSSbs  S*S    S*S  S*S    S&S       S*S        SSSbs   SSSbs 
+#   YSSP  SSS    S*S  S*S    SSS       S*S         YSSP    YSSP 
+#                SP   SP               SP                       
+#                Y    Y                Y                      
+
+
 import csv
 import os 
 
@@ -30,11 +76,15 @@ def get_couriers():
         courier_list = [row for row in reader]
     return(courier_list)
 
+# Function to load orders from a CSV file
 def get_orders():
     with open("orders.csv","r",newline="") as file:
         reader = csv.DictReader(file)
         order_list = [row for row in reader]
     return(order_list)
+
+
+
 
 def update_couriers(couriers):
     with open("couriers.csv", "w",newline='') as file:
@@ -59,18 +109,18 @@ def update_products(products):
             product['index'] = index
             index += 1
             writer.writerow(product)
-
+# Function to save orders to a CSV file
 def update_orders(orders):
     with open("orders.csv", "w",newline='') as file:
-        field_names = ["customer name", "customer address", "customer phone", "courier", "status", "items"]
+        field_names = ["customer name", "customer address", "customer phone number", "courier", "status", "items"]
         writer = csv.DictWriter(file,fieldnames=field_names)
         writer.writeheader()
         index = 0
-        for product in products:
+        for order in orders:
             #rewrite index's
             product['index'] = index
             index += 1
-            writer.writerow(product)
+            writer.writerow(order)
 
 
 
@@ -89,16 +139,17 @@ couriers = load_csv(COURIERS_FILE)
 orders = load_csv(ORDER_FILE)
 
 
-order_status_list = ["Out for delivery", "Pending", "Dispatched"]
+order_status_list = ["Preparing", "Ready for delivery", "Dispatched"]
 
 
 orders = []
 orders = [{
-            'customer_name':'Raheem', 
-            'customer_address':"Unit 2, 12 Main Street, LONDON, WH1 2ER", 
-            'customer_phone_number':'0987654321',
+            "customer_name": "Lord Raheem",
+            "customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER",
+            "customer_phone": "0789887334",
             "courier": 2, # Courier index
-            "order_status": "preparing",
+            "status": "preparing",
+            "items": "1, 3, 4" # Product index
 }]
 
 
@@ -301,7 +352,7 @@ while True:
                         print()
                 print("\nThanks for viewing the orders. Is there anything else we can help you with?\n")
                 break
-            #   create orders  
+            # create orders  
             # option 2:
             # Assuming orders is already defined as an empty list
             orders = []
@@ -346,56 +397,92 @@ while True:
                 # Append the order dictionary to the orders list
                 orders.append(order)
 
-                print("Order added successfully!")
-                print("Current orders:", orders)
+                update_orders(orders)
 
+                orders = get_orders()
+                
+                print("Updated list of orders:\n")
+                for order in orders:
+                    print(order["customer name"],order["customer address"],order["customer phone number"],order["courier"],order["status"],order["items"])
+                
+                print("\nNew order added successfully!.\n Is there something else we can help you with?\n")
+                break
 
-
-        
-                print('is there anything else we can help you with?')
-
-    # UPDATE existing order status
-
+            # UPDATE existing order status
             elif order_menu_option == 3:
-            #     PRINT orders list with its index values
-                for index,item in enumerate (orders):
-                    print(index,item['customer_name'])
 
-            # GET user input for order index value
-                user_input_index = int (input('ENTER order index value to update status'))
+                
+                # # PRINT orders list with its index values
+                # for index, item in enumerate(orders):
+                #     print(f"{index}: {item['customer_name']} (Status: {item['status']})")
+
+                # # GET user input for order index value
+                # user_input_index = int(input('ENTER order index value to update status: '))
+
+                # # CHECK if the provided index is valid
+                # if 0 <= user_input_index < len(orders):
+                #     # PRINT current status of the selected order
+                #     print(f"Current status of order {user_input_index} ({orders[user_input_index]['customer_name']}): {orders[user_input_index]['status']}")
+
+                #     # GET user input for new order status value
+                #     status_update = input('What do you want to UPDATE status to: ')
+
+                #     # UPDATE status for the selected order
+                #     orders[user_input_index]['status'] = status_update
+                #     print('Order status updated successfully!')
+
+                # else:
+                #     print('Invalid order index value.')
+
+                # print('Is there anything else we can help you with?')
+
+
+
+
+
+
+    # # UPDATE existing order status
+
+    #         elif order_menu_option == 3:
+    #         #     PRINT orders list with its index values
+    #             for index,item in enumerate (orders):
+    #                 print(index,item['customer_name'])
+
+    #         # GET user input for order index value
+    #             user_input_index = int (input('ENTER order index value to update status'))
             
             
-            # PRINT order status list with index values
-                for index,item in enumerate(orders):
-                    print(index,item['order_status'] )
+    #         # PRINT order status list with index values
+    #             for index,item in enumerate(orders):
+    #                 print(index,item['order_status'] )
 
-            # GET user input for order status index value
-                status_update = input('What do you want to UPDATE status to')
-                # UPDATE status for order
-                orders[user_input_index]['order_status'] = status_update
-                print('is there anything else we can help you with?')
+    #         # GET user input for order status index value
+    #             status_update = input('What do you want to UPDATE status to')
+    #             # UPDATE status for order
+    #             orders[user_input_index]['order_status'] = status_update
+    #             print('is there anything else we can help you with?')
 
-            # # ELSE IF user input is 4:
-            # elif order_menu_option == 4:
-            #     # STRETCH - UPDATE existing order
-            #     #     PRINT orders list with its index values
-            #     for index,item in enumerate (orders):
-            #         print(index,item['customer_name'])
-            # #GET user input for order index value
-            #     user_input_index = int ( input("ENTER order index value to update existing order"))
-            #     if user_input_index < 0 or user_input_index >= len(orders):
-            #         print("Invalid order index")
-            #             return
+    #         # ELSE IF user input is 4:
+    #         elif order_menu_option == 4:
+    #             # STRETCH - UPDATE existing order
+    #             #     PRINT orders list with its index values
+    #             for index,item in enumerate (orders):
+    #                 print(index,item['customer_name'])
+    #         #GET user input for order index value
+    #             user_input_index = int ( input("ENTER order index value to update existing order"))
+    #             if user_input_index < 0 or user_input_index >= len(orders):
+    #                 print("Invalid order index")
+    #                     return
 
-            #     order_to_update = orders[user_input_index]
+    #             order_to_update = orders[user_input_index]
 
-            #     for key, value in order_to_update.items():
-            #     new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
-            #     if new_value.strip() != "":
-            #     order_to_update[key] = new_value
+    #             for key, value in order_to_update.items():
+    #             new_value = input(f"Enter new value for {key} (press Enter to keep '{value}'): ")
+    #             if new_value.strip() != "":
+    #             order_to_update[key] = new_value
 
-            #     print("Order updated successfully!")
-            #     print_orders(orders)
+    #             print("Order updated successfully!")
+    #             print_orders(orders)
 
     #     FOR EACH key-value pair in selected order:
     #         GET user input for updated property
